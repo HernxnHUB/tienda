@@ -1,0 +1,3200 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Detalles Herith | Regalos que enamoran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Boxes personalizados, peluches, ramos de flores y detalles únicos en Cañete. Envío a domicilio disponible.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #fafafa;
+      color: #333;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ff4d6d;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav button:hover {
+      color: #ff4d6d;
+    }
+
+    /* CARRITO BADGE */
+    .cart-button {
+      position: relative;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-button:hover {
+      background: #e63c5c;
+      transform: translateY(-2px);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .cart-badge.show {
+      display: flex;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+      color: white;
+      padding: 80px 20px;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 18px;
+    }
+
+    .hero-actions button {
+      margin-top: 20px;
+      margin-right: 10px;
+      padding: 14px 28px;
+      border-radius: 30px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .primary {
+      background: white;
+      color: #ff4d6d;
+    }
+
+    .primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .secondary:hover {
+      background: white;
+      color: #ff4d6d;
+    }
+
+    .hero img {
+      width: 100%;
+      border-radius: 25px;
+    }
+
+    /* SECTIONS */
+    .section {
+      display: none;
+      padding: 60px 20px;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    /* PRODUCTS */
+    .products {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      position: relative;
+    }
+
+    .card-img-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .click-indicator {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 77, 109, 0.95);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 12px;
+      z-index: 2;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      animation: gentlePulse 3s infinite;
+    }
+
+    /* BADGE DE DESCUENTO */
+    .discount-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #25d366;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 13px;
+      z-index: 2;
+      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
+    }
+
+    @keyframes gentlePulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+      }
+    }
+
+    .card:hover .card-img-container img {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .click-indicator {
+      background: rgba(255, 77, 109, 1);
+      transform: scale(1.1);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    /* PRECIOS CON DESCUENTO */
+    .price-container {
+      margin: 10px 0;
+    }
+
+    .price-old {
+      color: #999;
+      font-size: 15px;
+      text-decoration: line-through;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .price {
+      color: #ff4d6d;
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    .savings {
+      color: #25d366;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 5px;
+    }
+
+    /* BOTONES DE PRODUCTO */
+    .product-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .add-to-cart-btn {
+      flex: 1;
+      background: #ff4d6d;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .add-to-cart-btn:hover {
+      background: #e63c5c;
+      transform: translateY(-2px);
+    }
+
+    .whatsapp-btn {
+      flex: 1;
+      background: #25d366;
+      color: white;
+      padding: 12px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .whatsapp-btn:hover {
+      background: #1fb855;
+      transform: translateY(-2px);
+    }
+
+    /* TESTIMONIOS */
+    .testimonials {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .testimonial-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .testimonial-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .testimonial-content p {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: #ff4d6d;
+    }
+
+    .stars {
+      color: #ffd700;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    /* COMO COMPRAR */
+    .how-to-buy {
+      background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+      color: white;
+      padding: 60px 20px;
+      margin: 60px 0;
+    }
+
+    .how-to-buy-content {
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .how-to-buy h2 {
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: white;
+      color: #ff4d6d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 auto 20px;
+    }
+
+    .step h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .faq-question {
+      font-weight: 600;
+      color: #ff4d6d;
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faq-answer {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* WHATSAPP FLOTANTE */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 1000;
+      text-decoration: none;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    .whatsapp-float:hover {
+      background: #1fb855;
+      transform: scale(1.15);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      color: #bbb;
+      padding: 40px 20px 25px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+      color: #ff4d6d;
+      margin-bottom: 15px;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: #bbb;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #ff4d6d;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: #ff4d6d;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      animation: zoom 0.3s ease;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s;
+    }
+
+    .close:hover {
+      color: #ff4d6d;
+    }
+
+    /* CARRITO MODAL */
+    .cart-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cart-modal-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+      animation: zoom 0.3s ease;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .cart-header h2 {
+      color: #ff4d6d;
+      margin: 0;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 15px;
+      padding: 15px;
+      border-bottom: 1px solid #f0f0f0;
+      align-items: center;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      color: #ff4d6d;
+      font-weight: 600;
+    }
+
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .qty-btn {
+      background: #f0f0f0;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .qty-btn:hover {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .remove-item {
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .remove-item:hover {
+      background: #e63c5c;
+    }
+
+    .cart-summary {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 2px solid #f0f0f0;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .cart-total-amount {
+      color: #ff4d6d;
+    }
+
+    .cart-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .checkout-btn {
+      flex: 1;
+      background: #25d366;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .checkout-btn:hover {
+      background: #1fb855;
+      transform: translateY(-2px);
+    }
+
+    .clear-cart-btn {
+      background: #f0f0f0;
+      color: #666;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .clear-cart-btn:hover {
+      background: #e0e0e0;
+    }
+
+    /* MODAL DE CONFIRMACIÓN */
+    .confirm-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 300;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .confirm-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 90%;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      animation: zoom 0.3s ease;
+    }
+
+    .confirm-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .confirm-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .confirm-message {
+      color: #666;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .confirm-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .confirm-btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 15px;
+    }
+
+    .confirm-btn-yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .confirm-btn-yes:hover {
+      background: #e63c5c;
+      transform: translateY(-2px);
+    }
+
+    .confirm-btn-no {
+      background: #f0f0f0;
+      color: #666;
+    }
+
+    .confirm-btn-no:hover {
+      background: #e0e0e0;
+    }
+
+    @keyframes zoom {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      nav {
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+
+      nav button {
+        font-size: 12px;
+        margin-left: 0;
+      }
+
+      .cart-button {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .cart-modal-content {
+        width: 95%;
+        max-height: 90vh;
+        padding: 20px;
+      }
+
+      .cart-item {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+      }
+
+      .cart-item img {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+      }
+
+      .cart-item-info {
+        flex: 1;
+      }
+
+      .remove-item {
+        align-self: flex-start;
+      }
+
+      .cart-actions {
+        flex-direction: column;
+      }
+
+      .clear-cart-btn {
+        width: 100%;
+      }
+
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .product-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">💖 Detalles Herith</div>
+      <nav>
+        <button onclick="show('home')">Inicio</button>
+        <button onclick="show('boxes')">Boxes</button>
+        <button onclick="show('peluches')">Peluches</button>
+        <button onclick="show('ramos')">Ramos</button>
+        <button class="cart-button" onclick="openCart()">
+          🛒 Carrito
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" class="section active">
+    <div class="hero">
+      <div class="hero-content">
+        <div>
+          <h1>Regalos que enamoran de verdad</h1>
+          <p>Boxes personalizados, peluches, ramos de flores y detalles únicos para sorprender en cualquier ocasión.
+            Compra fácil, paga por Yape y coordina todo por WhatsApp.</p>
+          <div class="hero-actions">
+            <button class="primary" onclick="show('boxes')">Ver Boxes</button>
+            <button class="secondary" onclick="show('peluches')">Ver Peluches</button>
+            <button class="secondary" onclick="show('ramos')">Ver Ramos</button>
+          </div>
+        </div>
+        <img src="images/logofondo.png" alt="Detalles Herith" />
+      </div>
+    </div>
+
+    <!-- COMO COMPRAR -->
+    <div class="how-to-buy">
+      <div class="how-to-buy-content">
+        <h2>¿Cómo comprar?</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Elige tu producto favorito</h3>
+            <p>Navega por nuestros boxes, peluches y ramos. ¡Encuentra el regalo perfecto!</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Contáctanos por WhatsApp</h3>
+            <p>Escríbenos para personalizar tu pedido y coordinar los detalles</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Paga y recibe</h3>
+            <p>Paga por Yape o depósito y recibe tu pedido en 1-2 días</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIOS -->
+    <div class="testimonials">
+      <div class="section-title">
+        <h2>Clientes felices 💕</h2>
+        <p>Esto dicen quienes ya confiaron en nosotros</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <img src="images/Cliente1.jpeg" alt="Cliente satisfecho" />
+          <div class="testimonial-content">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"¡Me encantó mi box! Súper lindo y bien personalizado. Sin duda volveré a comprar"</p>
+            <div class="testimonial-author">- Cliente satisfecho</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <img src="images/Cliente2.jpeg" alt="Cliente satisfecho" />
+          <div class="testimonial-content">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"El ramo llegó hermoso y justo como lo pedí. ¡Mi novio quedó feliz!"</p>
+            <div class="testimonial-author">- Cliente satisfecho</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <img src="images/Cliente3.jpeg" alt="Cliente satisfecho" />
+          <div class="testimonial-content">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Excelente atención y calidad. El ramo quedó precioso, 100% recomendado"</p>
+            <div class="testimonial-author">- Cliente satisfecho</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <div class="section-title">
+        <h2>Preguntas Frecuentes</h2>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          📦 ¿Hacen envíos a domicilio?
+        </div>
+        <div class="faq-answer">
+          Sí, hacemos envíos a domicilio con un costo adicional si es posible llegar a la zona. También ofrecemos puntos
+          de encuentro cercanos en lugares seguros y concurridos para tu comodidad.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          ⏰ ¿Cuánto demora la entrega?
+        </div>
+        <div class="faq-answer">
+          La entrega demora de 1 a 2 días hábiles después de confirmar tu pedido y el pago.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          ✨ ¿Puedo personalizar mi box?
+        </div>
+        <div class="faq-answer">
+          ¡Por supuesto! Nos encanta personalizar cada detalle según tus gustos. Contáctanos por WhatsApp y cuéntanos
+          qué te gustaría.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          💳 ¿Qué métodos de pago aceptan?
+        </div>
+        <div class="faq-answer">
+          Por el momento aceptamos Yape y depósito a cuenta BCP. El proceso es súper rápido y seguro.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          📍 ¿A qué zonas entregan?
+        </div>
+        <div class="faq-answer">
+          Hacemos entregas en las zonas de Cañete: Imperial, San Vicente, San Luis y Cerro Azul.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOXES -->
+  <section id="boxes" class="section">
+    <div class="section-title">
+      <h2>Boxes personalizados</h2>
+    </div>
+
+    <div class="products">
+
+      <div class="card" onclick="openModal(
+            'images/BoxCorderito.png',
+            'Box Corderito',
+            'Incluye Caja libro personalizado, Lámpara tulipan amarillo, Dedicatoria, Luces led, Una foto estilo polaroid. ',
+            'S/ 75.90',
+            'S/ 85.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-11% OFF</span>
+          <img src="images/BoxCorderito.png" alt="Box Corderito" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Corderito</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 85.00</span>
+            <span class="price">S/ 75.90</span>
+            <div class="savings">¡Ahorras S/ 9.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Corderito', 75.90, 'images/BoxCorderito.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Corderito" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxHelloKitty.png',
+            'Box Hello Kitty',
+            'Incluye Caja personalizada según temática, Peluche Hello kitty, 1 caja de vizzio/1 trululu/ 1bon a bon, Dedicatoria, Par de foto personalizadas. ',
+            'S/ 75.90',
+            'S/ 88.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/BoxHelloKitty.png" alt="Box Hello Kitty" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Hello Kitty</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 88.00</span>
+            <span class="price">S/ 75.90</span>
+            <div class="savings">¡Ahorras S/ 12.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Hello Kitty', 75.90, 'images/BoxHelloKitty.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Hello Kitty" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxLotso.jpeg',
+            'Box Lotso Dormilón',
+            'Incluye Caja personalizada con fotos polarid, Peluche lotso dormilón, 1 bon a bon/ 1 vizzio, Una dedicatoria.',
+            'S/ 60.90',
+            'S/ 70.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxLotso.jpeg" alt="Box Lotso Dormilón" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Lotso Dormilón</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 70.00</span>
+            <span class="price">S/ 60.90</span>
+            <div class="savings">¡Ahorras S/ 9.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Lotso Dormilón', 60.90, 'images/BoxLotso.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Lotso Dormilón" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxEncanto.jpeg',
+            'Box Encanto',
+            'Incluye Caja personalizada según temática, Peluche, Lámpara tulipán, Dedicatoria, Luces led.',
+            'S/ 85.90',
+            'S/ 98.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-12% OFF</span>
+          <img src="images/BoxEncanto.jpeg" alt="Box Encanto" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Encanto</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 98.00</span>
+            <span class="price">S/ 85.90</span>
+            <div class="savings">¡Ahorras S/ 12.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Encanto', 85.90, 'images/BoxEncanto.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Encanto" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+<!-- NUEVOS BOXES -->
+      <div class="card" onclick="openModal(
+            'images/BoxLotsoTulipan.jpeg',
+            'Box Lotso Tulipán',
+            'Incluye caja personalizada, peluche lotso dormilón, un ramo de 3 tulipanes, una mariposa, dedicatoria y luces led.',
+            'S/ 75.00',
+            'S/ 86.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxLotsoTulipan.jpeg" alt="Box Lotso Tulipán" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Lotso Tulipán</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 86.00</span>
+            <span class="price">S/ 75.00</span>
+            <div class="savings">¡Ahorras S/ 11.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Lotso Tulipán', 75.00, 'images/BoxLotsoTulipan.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Lotso Tulipán" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxLotsoMiniTulipan.jpeg',
+            'Box Lotso Mini Tulipán',
+            'Incluye caja personalizada, peluche lotso dormilón, un miniramo de un tulipán, un bon a bon y una dedicatoria.',
+            'S/ 65.00',
+            'S/ 75.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxLotsoMiniTulipan.jpeg" alt="Box Lotso Mini Tulipán" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Lotso Mini Tulipán</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 75.00</span>
+            <span class="price">S/ 65.00</span>
+            <div class="savings">¡Ahorras S/ 10.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Lotso Mini Tulipán', 65.00, 'images/BoxLotsoMiniTulipan.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Lotso Mini Tulipán" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxSpiderman.jpeg',
+            'Box Spiderman',
+            'Incluye caja personalizada, peluche spiderman, una caja de vizzio, un par de bon a bon, un mini trofeo, una dedicatoria.',
+            'S/ 59.00',
+            'S/ 68.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxSpiderman.jpeg" alt="Box Spiderman" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Spiderman</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 68.00</span>
+            <span class="price">S/ 59.00</span>
+            <div class="savings">¡Ahorras S/ 9.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Spiderman', 59.00, 'images/BoxSpiderman.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Spiderman" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxLamparaTulipan.jpeg',
+            'Box Lámpara Tulipán',
+            'Incluye caja de regalo, lámpara tulipán en forma de concha, una caja de vizzio, un bon a bon y una dedicatoria.',
+            'S/ 35.00',
+            'S/ 40.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxLamparaTulipan.jpeg" alt="Box Lámpara Tulipán" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Lámpara Tulipán</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 40.00</span>
+            <span class="price">S/ 35.00</span>
+            <div class="savings">¡Ahorras S/ 5.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Lámpara Tulipán', 35.00, 'images/BoxLamparaTulipan.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Lámpara Tulipán" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxSorpresa.jpeg',
+            'Box Sorpresa',
+            'Incluye una caja de folcote blanco, un peluche, un globo personalizado y un globo corazón, un portaretrato A5, 2 rosas eternas, unas papas inka chip, una caja de vizzio, dos bon a bon, dos fotos estilo polaroid y una dedicatoria.',
+            'S/ 85.00',
+            'S/ 98.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxSorpresa.jpeg" alt="Box Sorpresa" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Sorpresa</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 98.00</span>
+            <span class="price">S/ 85.00</span>
+            <div class="savings">¡Ahorras S/ 13.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Sorpresa', 85.00, 'images/BoxSorpresa.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Sorpresa" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/MiniBoxLlavero.jpeg',
+            'Mini Box Llavero',
+            'Incluye caja personalizada, dos llaveros y un par de bon a bon.',
+            'S/ 25.00',
+            'S/ 29.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/MiniBoxLlavero.jpeg" alt="Mini Box Llavero" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Mini Box Llavero</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 29.00</span>
+            <span class="price">S/ 25.00</span>
+            <div class="savings">¡Ahorras S/ 4.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Mini Box Llavero', 25.00, 'images/MiniBoxLlavero.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Mini Box Llavero" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxSnoopy.jpeg',
+            'Box Snoopy',
+            'Incluye Caja personalizada, Cubo giratorio de folcote, Peluche snoppy, 4 imágenes personalizadas, Dulces y Dedicatoria',
+            'S/ 85.90',
+            'S/ 95.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-10% OFF</span>
+          <img src="images/BoxSnoopy.jpeg" alt="Box Snoopy" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Snoopy</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 95.00</span>
+            <span class="price">S/ 85.90</span>
+            <div class="savings">¡Ahorras S/ 9.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Snoopy', 85.90, 'images/BoxSnoopy.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Snoopy" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxAmore.jpeg',
+            'Box Amore',
+            'Incluye peluche lotso dormilón, caja personalizada con fotos, 4 rosas eternas, luces led, y una dedicatoria.',
+            'S/ 75.90',
+            'S/ 85.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-11% OFF</span>
+          <img src="images/BoxAmore.jpeg" alt="Box Amore" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Amore</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 85.00</span>
+            <span class="price">S/ 75.90</span>
+            <div class="savings">¡Ahorras S/ 9.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Amore', 75.90, 'images/BoxAmore.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Amore" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxRoses.jpeg',
+            'Box Roses',
+            'Incluye caja con fotos personalizado, una mariposa, 6 rosas eternas 2 bon a bon y un llavero personalizado.',
+            'S/ 54.90',
+            'S/ 63.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxRoses.jpeg" alt="Box Roses" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Roses</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 63.00</span>
+            <span class="price">S/ 54.90</span>
+            <div class="savings">¡Ahorras S/ 8.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Roses', 54.90, 'images/BoxRoses.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Roses" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxAlianzaLima.jpeg',
+            'Box Alianza Lima',
+            'Incluye caja personalizada, peluche alianza o U, una carta con frase y fotos personalizada, un par de fotos estilo polaroid, un mini trofeo, una caja de vizzio, 2 bon a bon.',
+            'S/ 90.00',
+            'S/ 105.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/BoxAlianzaLima.jpeg" alt="Box Alianza Lima" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Alianza Lima</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 105.00</span>
+            <span class="price">S/ 90.00</span>
+            <div class="savings">¡Ahorras S/ 15.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Alianza Lima', 90.00, 'images/BoxAlianzaLima.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Alianza Lima" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxMoments.jpeg',
+            'Box Moments',
+            'Incluye caja con foto personalizada, 3 fotos estilo polaroid, un par de pulsera, una dedicatoria, dos bon a bon y un vizzio pequeño.',
+            'S/ 24.50',
+            'S/ 28.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxMoments.jpeg" alt="Box Moments" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Moments</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 28.00</span>
+            <span class="price">S/ 24.50</span>
+            <div class="savings">¡Ahorras S/ 3.50!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Moments', 24.50, 'images/BoxMoments.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Moments" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxDulcero.jpeg',
+            'Box Dulcero',
+            'Incluye caja tipo libro con corazón, fotos personalizados, dulces aleatorios y dedicatoria.',
+            'S/ 34.90',
+            'S/ 40.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/BoxDulcero.jpeg" alt="Box Dulcero" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Dulcero</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 40.00</span>
+            <span class="price">S/ 34.90</span>
+            <div class="savings">¡Ahorras S/ 5.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Dulcero', 34.90, 'images/BoxDulcero.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Dulcero" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/BoxCupones.jpeg',
+            'Box Cupones',
+            'Incluye caja personalizada, 10 cupones y un par de bon a bon.',
+            'S/ 12.90',
+            'S/ 15.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/BoxCupones.jpeg" alt="Box Cupones" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Box Cupones</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 15.00</span>
+            <span class="price">S/ 12.90</span>
+            <div class="savings">¡Ahorras S/ 2.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Box Cupones', 12.90, 'images/BoxCupones.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Box Cupones" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/CabinaCupones.jpeg',
+            'Cabina de Cupones',
+            'Incluye cabina de cupones y 10 cupones y un par de bon a bon',
+            'S/ 14.90',
+            'S/ 17.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-12% OFF</span>
+          <img src="images/CabinaCupones.jpeg" alt="Cabina de Cupones" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Cabina de Cupones</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 17.00</span>
+            <span class="price">S/ 14.90</span>
+            <div class="savings">¡Ahorras S/ 2.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Cabina de Cupones', 14.90, 'images/CabinaCupones.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa la Cabina de Cupones" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PELUCHES -->
+  <section id="peluches" class="section">
+    <div class="section-title">
+      <h2>Peluches</h2>
+    </div>
+
+    <div class="products">
+      <div class="card" onclick="openModal(
+            'images/PelucheSpiderman.png',
+            'Peluche Spiderman',
+            'El regalo perfecto para fans de Spiderman 🕷️💙 Súper suave, abrazable y con ese toque héroe que alegra cualquier día.',
+            'S/ 24.90',
+            'S/ 30.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-17% OFF</span>
+          <img src="images/PelucheSpiderman.png" alt="Peluche Spiderman" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Spiderman</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 30.00</span>
+            <span class="price">S/ 24.90</span>
+            <div class="savings">¡Ahorras S/ 5.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Spiderman', 24.90, 'images/PelucheSpiderman.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Spiderman" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheCorderitoTulipán.png',
+            'Peluche Corderito Tulipán',
+            'Tierno, delicado y lleno de amor 🤍🌷 Perfecto para regalar cariño en forma de abrazo.',
+            'S/ 26.90',
+            'S/ 32.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-16% OFF</span>
+          <img src="images/PelucheCorderitoTulipán.png" alt="Peluche Corderito Tulipán" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Corderito Tulipán</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 32.00</span>
+            <span class="price">S/ 26.90</span>
+            <div class="savings">¡Ahorras S/ 5.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Corderito Tulipán', 26.90, 'images/PelucheCorderitoTulipán.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Corderito Tulipán" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheHelloKitty.png',
+            'Peluche Hello Kitty',
+            'Un clásico que nunca falla 💕 Suave, adorable y perfecto para derretir corazones.',
+            'S/ 24.90',
+            'S/ 29.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheHelloKitty.png" alt="Peluche Hello Kitty" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Hello Kitty</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 29.00</span>
+            <span class="price">S/ 24.90</span>
+            <div class="savings">¡Ahorras S/ 4.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Hello Kitty', 24.90, 'images/PelucheHelloKitty.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Hello Kitty" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheHelloKitty2.png',
+            'Peluche Hello Kitty 2',
+            'Dulce y encantador ✨ Un detalle pequeño pero lleno de amor.',
+            'S/ 26.90',
+            'S/ 31.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/PelucheHelloKitty2.png" alt="Peluche Hello Kitty 2" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Hello Kitty 2</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 31.00</span>
+            <span class="price">S/ 26.90</span>
+            <div class="savings">¡Ahorras S/ 4.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Hello Kitty 2', 26.90, 'images/PelucheHelloKitty2.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Hello Kitty 2" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="playPelucheMusic(); openModal(
+            'images/PelucheMusical.png',
+            'Oso Musical',
+            'Un peluche que habla con música 🎶💖 de Karol G - Ocean o Tanto - Jesse & Joy.',
+            'S/ 25.90',
+            'S/ 32.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-19% OFF</span>
+          <img src="images/PelucheMusical.png" alt="Oso Musical" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Oso Musical</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 32.00</span>
+            <span class="price">S/ 25.90</span>
+            <div class="savings">¡Ahorras S/ 6.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Oso Musical', 25.90, 'images/PelucheMusical.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Oso Musical" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PeluchePerrito.png',
+            'Peluche Love',
+            'Suave, tierno y con mensaje de amor ❤️ Perfecto para regalar abrazos y sonrisas.',
+            'S/ 23.90',
+            'S/ 28.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-15% OFF</span>
+          <img src="images/PeluchePerrito.png" alt="Peluche Love" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Love</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 28.00</span>
+            <span class="price">S/ 23.90</span>
+            <div class="savings">¡Ahorras S/ 4.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Love', 23.90, 'images/PeluchePerrito.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Love" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheSnoopy.png',
+            'Peluche Snoopy',
+            'Un peluche lleno de ternura 🤍 Súper suave y perfecto para regalar compañía.',
+            'S/ 27.90',
+            'S/ 33.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-15% OFF</span>
+          <img src="images/PelucheSnoopy.png" alt="Peluche Snoopy" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Snoopy</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 33.00</span>
+            <span class="price">S/ 27.90</span>
+            <div class="savings">¡Ahorras S/ 5.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Snoopy', 27.90, 'images/PelucheSnoopy.png')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Snoopy" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NUEVOS PELUCHES -->
+      <div class="card" onclick="openModal(
+            'images/PelucheElefanteAzul.jpeg',
+            'Peluche Elefante Azul',
+            'Adorable y reconfortante 💙🐘 El compañero perfecto para esos momentos especiales.',
+            'S/ 18.00',
+            'S/ 21.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheElefanteAzul.jpeg" alt="Peluche Elefante Azul" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Elefante Azul</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 21.00</span>
+            <span class="price">S/ 18.00</span>
+            <div class="savings">¡Ahorras S/ 3.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Elefante Azul', 18.00, 'images/PelucheElefanteAzul.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Elefante Azul" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheWinniePooh.jpeg',
+            'Peluche Winnie Pooh',
+            'El osito más tierno y dulce 🍯🐻 Ideal para regalar ternura y alegría.',
+            'S/ 18.00',
+            'S/ 21.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheWinniePooh.jpeg" alt="Peluche Winnie Pooh" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Winnie Pooh</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 21.00</span>
+            <span class="price">S/ 18.00</span>
+            <div class="savings">¡Ahorras S/ 3.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Winnie Pooh', 18.00, 'images/PelucheWinniePooh.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Winnie Pooh" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheHipopotamo.jpeg',
+            'Peluche Hipopótamo',
+            'Grandote, suave y listo para abrazar 💜🦛 Un detalle único que enamora.',
+            'S/ 18.00',
+            'S/ 21.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheHipopotamo.jpeg" alt="Peluche Hipopótamo" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Hipopótamo</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 21.00</span>
+            <span class="price">S/ 18.00</span>
+            <div class="savings">¡Ahorras S/ 3.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Hipopótamo', 18.00, 'images/PelucheHipopotamo.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Hipopótamo" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheElefanteRojo.jpeg',
+            'Peluche Elefante Rojo',
+            'Vibrante y adorable ❤️🐘 Perfecto para regalar amor con estilo.',
+            'S/ 18.00',
+            'S/ 21.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheElefanteRojo.jpeg" alt="Peluche Elefante Rojo" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Elefante Rojo</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 21.00</span>
+            <span class="price">S/ 18.00</span>
+            <div class="savings">¡Ahorras S/ 3.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Elefante Rojo', 18.00, 'images/PelucheElefanteRojo.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Elefante Rojo" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheRanaKing.jpeg',
+            'Peluche Rana King',
+            'Súper original y divertido 👑🐸 Dale un toque especial a ese regalo único.',
+            'S/ 25.00',
+            'S/ 29.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheRanaKing.jpeg" alt="Peluche Rana King" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Rana King</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 29.00</span>
+            <span class="price">S/ 25.00</span>
+            <div class="savings">¡Ahorras S/ 4.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Rana King', 25.00, 'images/PelucheRanaKing.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Rana King" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheHelloKitty3.jpeg',
+            'Peluche Hello Kitty 3',
+            'Kawaii y encantador 💖🎀 El detalle perfecto para fans de Hello Kitty.',
+            'S/ 27.00',
+            'S/ 31.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/PelucheHelloKitty3.jpeg" alt="Peluche Hello Kitty 3" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Hello Kitty 3</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 31.00</span>
+            <span class="price">S/ 27.00</span>
+            <div class="savings">¡Ahorras S/ 4.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Hello Kitty 3', 27.00, 'images/PelucheHelloKitty3.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Hello Kitty 3" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheSanrioHelloKitty.jpeg',
+            'Peluche Sanrio Hello Kitty',
+            'Edición Sanrio exclusiva 🌸✨ Calidad premium y diseño irresistible.',
+            'S/ 23.00',
+            'S/ 27.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-15% OFF</span>
+          <img src="images/PelucheSanrioHelloKitty.jpeg" alt="Peluche Sanrio Hello Kitty" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Sanrio Hello Kitty</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 27.00</span>
+            <span class="price">S/ 23.00</span>
+            <div class="savings">¡Ahorras S/ 4.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Sanrio Hello Kitty', 23.00, 'images/PelucheSanrioHelloKitty.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Sanrio Hello Kitty" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheSanrioHelloKitty2.jpeg',
+            'Peluche Sanrio Hello Kitty 2',
+            'Diseño único Sanrio 💕🎀 Un regalo que conquista corazones.',
+            'S/ 25.00',
+            'S/ 29.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheSanrioHelloKitty2.jpeg" alt="Peluche Sanrio Hello Kitty 2" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Sanrio Hello Kitty 2</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 29.00</span>
+            <span class="price">S/ 25.00</span>
+            <div class="savings">¡Ahorras S/ 4.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Sanrio Hello Kitty 2', 25.00, 'images/PelucheSanrioHelloKitty2.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Sanrio Hello Kitty 2" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheSanrioMyMelody.jpeg',
+            'Peluche Sanrio My Melody',
+            'Dulzura Sanrio en su máxima expresión 🐰💗 Ideal para regalar ternura.',
+            'S/ 25.00',
+            'S/ 29.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheSanrioMyMelody.jpeg" alt="Peluche Sanrio My Melody" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Sanrio My Melody</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 29.00</span>
+            <span class="price">S/ 25.00</span>
+            <div class="savings">¡Ahorras S/ 4.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Sanrio My Melody', 25.00, 'images/PelucheSanrioMyMelody.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Sanrio My Melody" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/PelucheSanrioPachiDog.jpeg',
+            'Peluche Sanrio Pachi Dog con Fresa',
+            'Tierno y original de Sanrio 🍓🐶 Un compañero dulce y único.',
+            'S/ 25.00',
+            'S/ 29.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/PelucheSanrioPachiDog.jpeg" alt="Peluche Sanrio Pachi Dog con Fresa" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Peluche Sanrio Pachi Dog con Fresa</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 29.00</span>
+            <span class="price">S/ 25.00</span>
+            <div class="savings">¡Ahorras S/ 4.00!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Peluche Sanrio Pachi Dog con Fresa', 25.00, 'images/PelucheSanrioPachiDog.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Peluche Sanrio Pachi Dog con Fresa" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- RAMOS -->
+  <section id="ramos" class="section">
+    <div class="section-title">
+      <h2>Ramos</h2>
+    </div>
+
+    <div class="products">
+
+      <div class="card" onclick="openModal(
+            'images/RamoLotso.jpeg',
+            'Ramo Lotso Dormilón',
+            'Incluye 10 rosas eternas, Tul de perlas, Dedicatoria y Peluche Lotso dormilón',
+            'S/ 90.90',
+            'S/ 105.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/RamoLotso.jpeg" alt="Ramo Lotso Dormilón" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Lotso Dormilón</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 105.00</span>
+            <span class="price">S/ 90.90</span>
+            <div class="savings">¡Ahorras S/ 14.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Lotso Dormilón', 90.90, 'images/RamoLotso.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Lotso Dormilón" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoAmore.jpeg',
+            'Ramo Amore',
+            'Incluye 8 rosas eternas(2 colores a elección), 8 fotos, 1 mariposa y 1 dedicatoria.',
+            'S/ 50.90',
+            'S/ 60.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-15% OFF</span>
+          <img src="images/RamoAmore.jpeg" alt="Ramo Amore" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Amore</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 60.00</span>
+            <span class="price">S/ 50.90</span>
+            <div class="savings">¡Ahorras S/ 9.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Amore', 50.90, 'images/RamoAmore.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Amore" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoKitty.jpeg',
+            'Ramo Kitty',
+            'Incluye envoltura tipo coreano, 5 rosas eternas, un peluche hello kitty, una mariposa, y dedicatoria.',
+            'S/ 64.90',
+            'S/ 75.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/RamoKitty.jpeg" alt="Ramo Kitty" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Kitty</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 75.00</span>
+            <span class="price">S/ 64.90</span>
+            <div class="savings">¡Ahorras S/ 10.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Kitty', 64.90, 'images/RamoKitty.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Kitty" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoPerla.jpeg',
+            'Ramo Perla',
+            'Incluye 7 rosas eternas, tul perlado y una dedicatoria.',
+            'S/ 44.90',
+            'S/ 52.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/RamoPerla.jpeg" alt="Ramo Perla" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Perla</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 52.00</span>
+            <span class="price">S/ 44.90</span>
+            <div class="savings">¡Ahorras S/ 7.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Perla', 44.90, 'images/RamoPerla.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Perla" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoMoments.jpeg',
+            'Ramo Moments',
+            'Incluye envoltura estilo coreano, una mariposa 12 fotos personalizadas, 5 bon a bon y una dedicatoria',
+            'S/ 24.90',
+            'S/ 29.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/RamoMoments.jpeg" alt="Ramo Moments" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Moments</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 29.00</span>
+            <span class="price">S/ 24.90</span>
+            <div class="savings">¡Ahorras S/ 4.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Moments', 24.90, 'images/RamoMoments.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Moments" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/Ramo6Rosas.jpeg',
+            'Ramo 6 Rosas',
+            'Incluye 6 rosas eternas, una mariposa y una dedicatoria.',
+            'S/ 35.90',
+            'S/ 42.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-15% OFF</span>
+          <img src="images/Ramo6Rosas.jpeg" alt="Ramo 6 Rosas" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo 6 Rosas</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 42.00</span>
+            <span class="price">S/ 35.90</span>
+            <div class="savings">¡Ahorras S/ 6.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo 6 Rosas', 35.90, 'images/Ramo6Rosas.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo 6 Rosas" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoDB.jpeg',
+            'Ramo Dragon Ball',
+            'Incluye 7 rosas eternas (de dos colores), una corona, y una dedicatoria.',
+            'S/ 44.90',
+            'S/ 52.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/RamoDB.jpeg" alt="Ramo Dragon Ball" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Dragon Ball</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 52.00</span>
+            <span class="price">S/ 44.90</span>
+            <div class="savings">¡Ahorras S/ 7.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Dragon Ball', 44.90, 'images/RamoDB.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Dragon Ball" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoVanGogh.jpeg',
+            'Ramo Van Gogh',
+            'Incluye 7 rosas, un girasol y una dedicatoria.',
+            'S/ 49.90',
+            'S/ 58.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-14% OFF</span>
+          <img src="images/RamoVanGogh.jpeg" alt="Ramo Van Gogh" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Van Gogh</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 58.00</span>
+            <span class="price">S/ 49.90</span>
+            <div class="savings">¡Ahorras S/ 8.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Van Gogh', 49.90, 'images/RamoVanGogh.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Van Gogh" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoCorazon.jpeg',
+            'Ramo Corazón',
+            'Incluye 13 rosas eternas (de dos colores diferentes) una mariposa, y una dedicatoria.',
+            'S/ 69.90',
+            'S/ 82.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-15% OFF</span>
+          <img src="images/RamoCorazon.jpeg" alt="Ramo Corazón" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Corazón</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 82.00</span>
+            <span class="price">S/ 69.90</span>
+            <div class="savings">¡Ahorras S/ 12.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Corazón', 69.90, 'images/RamoCorazon.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Corazón" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoTulip.jpeg',
+            'Ramo Tulipán',
+            'Incluye envoltura estilo coreano, 3 tulipanes y una dedicatoria.',
+            'S/ 29.90',
+            'S/ 35.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-15% OFF</span>
+          <img src="images/RamoTulip.jpeg" alt="Ramo Tulipán" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Tulipán</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 35.00</span>
+            <span class="price">S/ 29.90</span>
+            <div class="savings">¡Ahorras S/ 5.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Tulipán', 29.90, 'images/RamoTulip.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Tulipán" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/MiniRamoTulipan.jpeg',
+            'Mini Ramo Tulipán',
+            'Incluye envoltura estilo coreano, un tulipán de limpiapipa y una dedicatoria.',
+            'S/ 19.90',
+            'S/ 23.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-13% OFF</span>
+          <img src="images/MiniRamoTulipan.jpeg" alt="Mini Ramo Tulipán" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Mini Ramo Tulipán</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 23.00</span>
+            <span class="price">S/ 19.90</span>
+            <div class="savings">¡Ahorras S/ 3.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Mini Ramo Tulipán', 19.90, 'images/MiniRamoTulipan.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Mini Ramo Tulipán" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal(
+            'images/RamoValentin.jpeg',
+            'Ramo Valentin',
+            'Incluye 6 rosas eternas, una mariposa y una dedicatoria.',
+            'S/ 35.90',
+            'S/ 42.00'
+          )">
+        <div class="card-img-container">
+          <span class="discount-badge">-15% OFF</span>
+          <img src="images/RamoValentin.jpeg" alt="Ramo Valentin" />
+          <div class="click-indicator">
+            <span>👁️</span>
+            <span>Click para ver</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Ramo Valentin</h3>
+          <div class="price-container">
+            <span class="price-old">S/ 42.00</span>
+            <span class="price">S/ 35.90</span>
+            <div class="savings">¡Ahorras S/ 6.10!</div>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart-btn"
+              onclick="event.stopPropagation(); addToCart('Ramo Valentin', 35.90, 'images/RamoValentin.jpeg')">
+              🛒 Agregar
+            </button>
+            <a href="https://wa.me/51986341772?text=Hola, me interesa el Ramo Valentin" class="whatsapp-btn"
+              onclick="event.stopPropagation()">
+              📱 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DETALLE PRODUCTO -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <img id="modal-img" alt="Producto" />
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+      <div class="price-container">
+        <span class="price-old" id="modal-price-old"></span>
+        <span class="price" id="modal-price"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CARRITO -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-modal-content">
+      <div class="cart-header">
+        <h2>🛒 Mi Carrito</h2>
+        <span class="close" onclick="closeCart()">×</span>
+      </div>
+
+      <div id="cart-items-container">
+        <div class="cart-empty">
+          <p style="font-size: 48px;">🛒</p>
+          <p>Tu carrito está vacío</p>
+          <p style="font-size: 14px; color: #999;">Agrega productos para empezar</p>
+        </div>
+      </div>
+
+      <div class="cart-summary" id="cart-summary" style="display: none;">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span class="cart-total-amount" id="cart-total">S/ 0.00</span>
+        </div>
+        <div class="cart-actions">
+          <button class="clear-cart-btn" onclick="clearCart()">Vaciar carrito</button>
+          <a href="#" class="checkout-btn" id="checkout-btn">
+            📱 Pedir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONFIRMACIÓN -->
+  <div id="confirm-modal" class="confirm-modal">
+    <div class="confirm-content">
+      <div class="confirm-icon">🗑️</div>
+      <div class="confirm-title">¿Vaciar carrito?</div>
+      <div class="confirm-message">Se eliminarán todos los productos de tu carrito</div>
+      <div class="confirm-buttons">
+        <button class="confirm-btn confirm-btn-no" onclick="closeConfirm()">Cancelar</button>
+        <button class="confirm-btn confirm-btn-yes" onclick="confirmClearCart()">Sí, vaciar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTON WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/51986341772" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+    📱
+  </a>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>💖 Detalles Herith</h3>
+        <p>Regalos que enamoran de verdad</p>
+        <p>Boxes personalizados, peluches y ramos para toda ocasión</p>
+      </div>
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>📱 WhatsApp: +51 986 341 772</p>
+        <p>📍 Cañete, Lima - Perú</p>
+        <p>⏰ Lun - Dom: 9AM - 8PM</p>
+      </div>
+      <div class="footer-section">
+        <h3>Zonas de entrega</h3>
+        <p>✓ Imperial</p>
+        <p>✓ San Vicente</p>
+        <p>✓ San Luis</p>
+        <p>✓ Cerro Azul</p>
+      </div>
+      <div class="footer-section">
+        <h3>Síguenos</h3>
+        <div class="social-links">
+          <a href="#" onclick="show('home'); return false;" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          </a>
+          <a href="#" onclick="show('home'); return false;" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+          </a>
+          <a href="#" onclick="show('home'); return false;" aria-label="TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+            </svg>
+          </a>
+        </div>
+        <p style="margin-top: 15px; font-size: 14px;">Próximamente actualizaremos nuestras redes sociales</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Detalles Herith · Regalos con amor
+    </div>
+  </footer>
+
+  <audio id="music1">
+    <source src="music/ocean.mp4" type="audio/mp4">
+  </audio>
+
+  <audio id="music2">
+    <source src="music/tanto.mp4" type="audio/mp4">
+  </audio>
+
+  <script>
+    // MÚSICA
+    const musics = [
+      document.getElementById("music1"),
+      document.getElementById("music2")
+    ];
+
+    let currentMusic = null;
+
+    function playPelucheMusic() {
+      musics.forEach(m => {
+        m.pause();
+        m.currentTime = 0;
+      });
+
+      currentMusic = musics[Math.floor(Math.random() * musics.length)];
+      currentMusic.volume = 0.35;
+      currentMusic.play();
+    }
+
+    // NAVEGACIÓN
+    function show(id) {
+      document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // MODAL PRODUCTO
+    function openModal(img, title, desc, price, oldPrice) {
+      document.getElementById("modal-img").src = img;
+      document.getElementById("modal-title").textContent = title;
+      document.getElementById("modal-desc").textContent = desc;
+      document.getElementById("modal-price").textContent = price;
+
+      if (oldPrice) {
+        document.getElementById("modal-price-old").textContent = oldPrice;
+        document.getElementById("modal-price-old").style.display = "block";
+      } else {
+        document.getElementById("modal-price-old").style.display = "none";
+      }
+
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+
+      if (currentMusic) {
+        currentMusic.pause();
+        currentMusic.currentTime = 0;
+      }
+    }
+
+    // CARRITO DE COMPRAS
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function updateCartUI() {
+      const badge = document.getElementById('cart-badge');
+      const itemsContainer = document.getElementById('cart-items-container');
+      const summary = document.getElementById('cart-summary');
+      const totalElement = document.getElementById('cart-total');
+
+      // Actualizar badge
+      if (cart.length > 0) {
+        badge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        badge.classList.add('show');
+      } else {
+        badge.classList.remove('show');
+      }
+
+      // Actualizar contenido del carrito
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = `
+          <div class="cart-empty">
+            <p style="font-size: 48px;">🛒</p>
+            <p>Tu carrito está vacío</p>
+            <p style="font-size: 14px; color: #999;">Agrega productos para empezar</p>
+          </div>
+        `;
+        summary.style.display = 'none';
+      } else {
+        itemsContainer.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">S/ ${item.price.toFixed(2)}</div>
+              <div class="cart-item-quantity">
+                <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button class="remove-item" onclick="removeFromCart(${index})">Eliminar</button>
+          </div>
+        `).join('');
+
+        summary.style.display = 'block';
+
+        // Calcular total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        totalElement.textContent = `S/ ${total.toFixed(2)}`;
+
+        // Actualizar enlace de WhatsApp
+        updateCheckoutLink();
+      }
+
+      // Guardar en localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function addToCart(name, price, image) {
+      const existingItem = cart.find(item => item.name === name);
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({
+          name: name,
+          price: price,
+          image: image,
+          quantity: 1
+        });
+      }
+
+      updateCartUI();
+
+      // Mostrar notificación
+      showNotification('✅ Producto agregado al carrito');
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+      showNotification('🗑️ Producto eliminado del carrito');
+    }
+
+    function updateQuantity(index, change) {
+      cart[index].quantity += change;
+
+      if (cart[index].quantity <= 0) {
+        removeFromCart(index);
+      } else {
+        updateCartUI();
+      }
+    }
+
+    function clearCart() {
+      document.getElementById('confirm-modal').style.display = 'flex';
+    }
+
+    function closeConfirm() {
+      document.getElementById('confirm-modal').style.display = 'none';
+    }
+
+    function confirmClearCart() {
+      cart = [];
+      updateCartUI();
+      closeConfirm();
+      showNotification('🗑️ Carrito vaciado');
+    }
+
+    function updateCheckoutLink() {
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      let message = 'Hola! Me gustaría hacer un pedido:%0A%0A';
+
+      cart.forEach(item => {
+        message += `• ${item.name} (x${item.quantity}) - S/ ${(item.price * item.quantity).toFixed(2)}%0A`;
+      });
+
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      message += `%0ATotal: S/ ${total.toFixed(2)}`;
+
+      checkoutBtn.href = `https://wa.me/51986341772?text=${message}`;
+    }
+
+    function openCart() {
+      document.getElementById('cart-modal').style.display = 'flex';
+    }
+
+    function closeCart() {
+      document.getElementById('cart-modal').style.display = 'none';
+    }
+
+    function showNotification(message) {
+      // Crear notificación simple
+      const notification = document.createElement('div');
+      notification.textContent = message;
+      notification.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: linear-gradient(135deg, #25d366, #1fb855);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 25px;
+        font-weight: 600;
+        z-index: 10000;
+        box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        animation: slideIn 0.3s ease;
+      `;
+
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+      }, 2000);
+    }
+
+    // Cerrar modales al hacer click fuera
+    document.getElementById("modal").addEventListener("click", function (e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    document.getElementById("cart-modal").addEventListener("click", function (e) {
+      if (e.target === this) {
+        closeCart();
+      }
+    });
+
+    document.getElementById("confirm-modal").addEventListener("click", function (e) {
+      if (e.target === this) {
+        closeConfirm();
+      }
+    });
+
+    // Inicializar carrito al cargar la página
+    updateCartUI();
+  </script>
+
+  <style>
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+    }
+  </style>
+</body>
+
+</html>
